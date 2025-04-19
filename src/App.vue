@@ -50,8 +50,18 @@ function createTodo(){
   })
 }
 
-onMounted(async() => {
+onMounted(() => {
   getPrayerTime()
+  list();
+})
+
+onMounted(async() => {
+  try{
+    records.value = await pb.collection('Todo').getFullList(){
+    }catch (error){
+      console.error('Error fetching records:', error)
+    }
+  }
 })
 </script>
 
